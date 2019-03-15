@@ -1,8 +1,13 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
+import mountain from '../icons/MTG_Mountain.png';
+import ocean from '../icons/MTG_Blue.png';
+import plains from '../icons/MTG_Plains.png';
+import forest from '../icons/MTG_Forest.png';
+import swamp from '../icons/MTG_Swamp.png';
 
 import { addCard } from '../actions/deckCards'
 
@@ -17,19 +22,19 @@ class CardData extends Component {
     generateManaTags(element, id) {
         switch (element) {
             case "R":
-                return (<img key={id} style={{marginLeft: 3}} src='https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/8/87/R.svg?version=3b5a5cc001a7ae6282b24606e9e99715' alt="fire" height="20" width="20" />)
+                return (<img key={id} style={{marginLeft: 3}} src= {mountain} alt="Moutain" height="20" width="20" />)
 
             case "U":
-                return <img key={id} style={{marginLeft: 3}} src='https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/9/9f/U.svg?version=99a0e26dd02040b072e33af91a6ab198' alt="water" height="20" width="20" />
+                return <img key={id} style={{marginLeft: 3}} src= {ocean} alt="Ocean" height="20" width="20" />
 
             case "G":
-                return <img key={id} style={{marginLeft: 3}} src='https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/8/88/G.svg?version=6ebca1fee33aaf3c3fc1cd39a4f782df' alt="life" height="20" width="20" />
+                return <img key={id} style={{marginLeft: 3}} src= {forest} alt="Forest" height="20" width="20" />
 
             case "W":
-                return <img key={id} style={{marginLeft: 3}} src='https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/8/8e/W.svg?version=6e6c411768c4bf5a947dfa973207799b' alt="light" height="20" width="20" />
+                return <img key={id} style={{marginLeft: 3}} src= {plains} alt="Plains" height="20" width="20" />
 
             case "B":
-                return <img key={id} style={{marginLeft: 3}} src='https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/2/2f/B.svg?version=0a87a78acd60c4f2074a0c9e4eb651a5' alt="dark" height="20" width="20" />
+                return <img key={id} style={{marginLeft: 3}} src= {swamp} alt="Swamp" height="20" width="20" />
 
             default:
                 return <span key={id} className="label label-warning"><b>{element}</b></span>

@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-
-import QtyButtons from './QtyButtons'
-import { decrement } from '../actions/deckCards'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import QtyButtons from './QtyButtons';
+import { decrement } from '../actions/deckCards';
+import mountain from '../icons/MTG_Mountain.png';
+import ocean from '../icons/MTG_Blue.png';
+import plains from '../icons/MTG_Plains.png';
+import forest from '../icons/MTG_Forest.png';
+import swamp from '../icons/MTG_Swamp.png';
 
 class DeckCard extends Component {
     constructor(props) {
@@ -29,22 +33,21 @@ class DeckCard extends Component {
             }
             return acc
         }, {})
-    }
-
+    };
 
     getCost = () => {
         const cost = this.translateCost()
         const images = []
         const imageURLs = {
-            red: 'https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/8/87/R.svg?version=3b5a5cc001a7ae6282b24606e9e99715',
-            blue: 'https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/9/9f/U.svg?version=99a0e26dd02040b072e33af91a6ab198',
-            green: 'https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/8/88/G.svg?version=6ebca1fee33aaf3c3fc1cd39a4f782df',
-            white: 'https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/8/8e/W.svg?version=6e6c411768c4bf5a947dfa973207799b',
-            black: 'https://d1u5p3l4wpay3k.cloudfront.net/mtgsalvation_gamepedia/2/2f/B.svg?version=0a87a78acd60c4f2074a0c9e4eb651a5'
-        }
+            red: mountain,
+            blue: ocean,
+            green: forest,
+            white: plains,
+            black: swamp
+        };
 
         if (cost.colorless) {
-            images.push( <span key={ 'colorless' } className='colorless-cost'> {  cost.colorless } </span> )
+            images.push( <span key={ 'colorless' } className=' colorless-cost'> {  cost.colorless } </span> )
         }
 
         for (let type in cost) {
