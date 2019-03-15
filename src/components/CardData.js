@@ -8,6 +8,7 @@ import ocean from '../icons/MTG_Blue.png';
 import plains from '../icons/MTG_Plains.png';
 import forest from '../icons/MTG_Forest.png';
 import swamp from '../icons/MTG_Swamp.png';
+import cardDefault from '../icons/MTG_CardBack.jpg';
 
 import { addCard } from '../actions/deckCards'
 
@@ -66,7 +67,7 @@ class CardData extends Component {
               border                : "2px black solid"
             }
           };
-
+          console.log(this.props.cardData);
         return (
             <div className="row border align-items-center justify-content-around">
                 {/* eslint-disable-next-line */}
@@ -84,7 +85,21 @@ class CardData extends Component {
                         </div>
                         <div className = "row border-bottom">
                             <div className="col">
-                                <img style={{marginTop: 5, marginBottom: 5}} src={this.props.cardData.imageUrl} alt={this.props.cardData.name} height="400" width="250" />
+                                <img style={{marginTop: 5, marginBottom: 5}} src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} height="400" width="250" />
+                                {
+                                    !this.props.cardData.imageUrl ? 
+                                                                <div className = "row mb-0">
+                                                                    <div className="col">
+                                                                        <p className="text-center text-white mb-0"><i>Card Image Unavailable</i></p>
+                                                                    </div>
+                                                                </div>
+                                    : null
+                                }
+                            </div>
+                        </div>
+                        <div className = "row border-bottom">
+                            <div className="col">
+                                <h4 className="text-center text-white">{this.props.cardData.name}</h4>
                             </div>
                         </div>
                         <div className = "row justify-content-center">
