@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div className='container'>
-          <div className="row" >
+          <div className="row mainContainer align-items-center justify-content-center" >
             <div className="col border bg-light">
               <Switch>
                 <AuthenticatedRoute path='/user_id/:user_id/decks/:deck_id' component={DeckView} />
