@@ -1,6 +1,8 @@
 import axios from 'axios';
+import mtg from 'mtgsdk';
 export const GET_DECKS = 'GET_DECKS';
 export const CREATE_DECK = 'CREATE_DECK';
+export const GET_MTG_DECKS = "GET_MTG_DECK";
 const url = process.env.REACT_APP_API_URL;
 
 export function getDecks(user_id) {
@@ -69,7 +71,7 @@ export function deleteDeck(id, user_id) {
             console.err(err)
         }
     }
-}
+};
 
 export function addWin(id, user_id, deck_name, win_count, loss_count) {
     return async (dispatch) => {
@@ -95,7 +97,7 @@ export function addWin(id, user_id, deck_name, win_count, loss_count) {
             console.log(err)
         }
     }
-}
+};
 
 export function addLoss(id, user_id, deck_name, win_count, loss_count) {
     return async (dispatch) => {
@@ -121,4 +123,5 @@ export function addLoss(id, user_id, deck_name, win_count, loss_count) {
             console.log(err)
         }
     }
-}
+};
+

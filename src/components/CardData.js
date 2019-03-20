@@ -67,7 +67,6 @@ class CardData extends Component {
               border                : "2px black solid"
             }
           };
-          console.log(this.props.cardData);
         return (
             <div className="row border align-items-center justify-content-around">
                 {/* eslint-disable-next-line */}
