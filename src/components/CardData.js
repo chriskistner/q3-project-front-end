@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Modal from 'react-modal';
 import mountain from '../icons/MTG_Mountain.png';
 import ocean from '../icons/MTG_Blue.png';
 import plains from '../icons/MTG_Plains.png';
@@ -55,61 +54,14 @@ class CardData extends Component {
 
     render() {
         const manaCost = this.props.cardData.manaCost || 0;
-        const customStyles = {
-            content : {
-              top                   : '50%',
-              left                  : '50%',
-              right                 : 'auto',
-              bottom                : 'auto',
-              marginRight           : '-25%',
-              transform             : 'translate(-50%, -50%)',
-              backgroundColor       :  "gray",
-              border                : "2px black solid"
-            }
-          };
         return (
-            <div className="row border align-items-center justify-content-around">
-                {/* eslint-disable-next-line */}
-                <span className="col-4"><b><a onClick={(event) =>
-                    {event.preventDefault()
-                    this.setModal(true) }
-                    } href="#">{this.props.cardData.name}</a></b>
-                </span>
-                <Modal isOpen={this.state.isOpen} onRequestClose={() => this.setModal(false)} style={customStyles} contentLabel="Example Modal">
-                    <div className="Container">
-                        <div className = "row border-bottom justify-content-end">
-                            <div className="col-2">
-                                <button style={{marginBottom: 5}} className="btn btn-sm btn-light" onClick={e => this.setModal(false)}>X</button>
-                            </div>
-                        </div>
-                        <div className = "row border-bottom">
-                            <div className="col">
-                                <img style={{marginTop: 5, marginBottom: 5}} src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} height="400" width="250" />
-                                {
-                                    !this.props.cardData.imageUrl ? 
-                                                                <div className = "row mb-0">
-                                                                    <div className="col">
-                                                                        <p className="text-center text-white mb-0"><i>Card Image Unavailable</i></p>
-                                                                    </div>
-                                                                </div>
-                                    : null
-                                }
-                            </div>
-                        </div>
-                        <div className = "row border-bottom">
-                            <div className="col">
-                                <h4 className="text-center text-white">{this.props.cardData.name}</h4>
-                            </div>
-                        </div>
-                        <div className = "row justify-content-center">
-                            <div className="col-8 align-self-center">
-                                <button style={{marginTop: 5}} type="button" className="btn btn-success">Add Card to Deck</button>
-                            </div>
-                        </div>
-                    </div>
-                </Modal>
-                <span>{this.generateManaCost(manaCost)}</span>
-                <button className="btn btn-sm btn-outline-primary" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) }>+</button>
+            <div class="card m-2 border border-dark" style={{width: 200}}>
+                <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
+                <div class="card-body">
+                    <h5 class="card-title">{this.props.cardData.name}</h5>
+                    <span>MANA: {this.generateManaCost(manaCost)}</span>
+                    <a href="#" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) } class="btn btn-primary">Add to Deck</a>
+                </div>
             </div>
         )
     }
