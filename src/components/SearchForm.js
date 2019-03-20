@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { findCards } from '../actions/cards.js';
 import { bindActionCreators } from 'redux';
-import SetOptions from './SetLists';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -17,7 +16,6 @@ class SearchForm extends Component {
         this.setState({
           [event.target.name]: event.target.value
         })
-        console.log(this.state)
     };
 
     render() {
@@ -31,9 +29,12 @@ class SearchForm extends Component {
                 </div>
             </div>
             <div className="row mb-2">
-                <div className="col-6">
+                <div className="col-4">
+                    <input className="form-control mr-sm-2" type="search" placeholder="Search by Set" name="set" value={this.state.set} onChange={this.handleChange} aria-label="Search"/>
+                </div>
+                <div className="col-3">
                     <select className="form-control label-select" name="color" value={this.props.color} onChange={this.handleChange}>
-                        <option value="default" selected disabled>Select Card Color if Known</option>
+                        <option value="default" selected disabled>Select Color</option>
                         <option value="Black">Black</option>
                         <option value="Blue">Blue</option>
                         <option value="Green">Green</option>
@@ -41,9 +42,9 @@ class SearchForm extends Component {
                         <option value="White">White</option>
                     </select>
                 </div>
-                <div className="col-6">
+                <div className="col-3">
                     <select className="form-control label-select" name="type" value={this.props.color} onChange={this.handleChange}>
-                        <option value="default" selected disabled>Select Card Type if Known</option>
+                        <option value="default" selected disabled>Select Type</option>
                         <option value="Artifact">Artifact</option>
                         <option value="Creature">Creature</option>
                         <option value="Enchantment">Enchantment</option>
@@ -53,10 +54,10 @@ class SearchForm extends Component {
                         <option value="Sorcery">Sorcery</option>
                     </select>
                 </div>
+                <div className="col-2">
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">SEARCH</button>  
+                </div>
             </div>
-
-                <SetOptions name="set" set={this.state.set} changeSet={this.handleChange} />
-                <button className="btn btn-block btn-outline-success my-2 my-sm-0" type="submit">Find Card By Name</button>  
             </form>
         </div>
         )
