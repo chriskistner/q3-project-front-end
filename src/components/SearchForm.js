@@ -9,32 +9,53 @@ class SearchForm extends Component {
         super(props)
 
         this.state = {
-            name: '',
-            set: ''
+
         }
-    }
+    };
 
-    handleChangeName = (event) => {
+    handleChange = (event) => {
         this.setState({
-          name: event.target.value
+          [event.target.name]: event.target.value
         })
-      };
-
-    handleChangeSet = (event) => {
-        this.setState({
-            set: event.target.value
-        })
-    }
+        console.log(this.state)
+    };
 
     render() {
         return (
         <div>
             <form className="form my-2 my-lg-0" onSubmit={(event) => { event.preventDefault()
-            this.props.findCards(this.state.name, this.state.set)}}>
-                <div style={{marginBottom: 5}} className="form-group">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Enter Card's Name" name="bookID" value={this.state.name} onChange={this.handleChangeName} aria-label="Search"/>
+            this.props.findCards(this.state.name, this.state.set, this.state.color, this.state.type)}}>
+            <div className="row mb-2">
+                <div className="col">
+                <input className="form-control mr-sm-2" type="search" placeholder="Search Cards by Name" name="name" value={this.state.name} onChange={this.handleChange} aria-label="Search"/>
                 </div>
-                <SetOptions name="set" set={this.state.set} changeSet={this.handleChangeSet} />
+            </div>
+            <div className="row mb-2">
+                <div className="col-6">
+                    <select className="form-control label-select" name="color" value={this.props.color} onChange={this.handleChange}>
+                        <option value="default" selected disabled>Select Card Color if Known</option>
+                        <option value="Black">Black</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Green">Green</option>
+                        <option value="Red">Red</option>
+                        <option value="White">White</option>
+                    </select>
+                </div>
+                <div className="col-6">
+                    <select className="form-control label-select" name="type" value={this.props.color} onChange={this.handleChange}>
+                        <option value="default" selected disabled>Select Card Type if Known</option>
+                        <option value="Artifact">Artifact</option>
+                        <option value="Creature">Creature</option>
+                        <option value="Enchantment">Enchantment</option>
+                        <option value="Instant">Instant</option>
+                        <option value="Planeswalker">Planeswalker</option>
+                        <option value="Spell">Spell</option>
+                        <option value="Sorcery">Sorcery</option>
+                    </select>
+                </div>
+            </div>
+
+                <SetOptions name="set" set={this.state.set} changeSet={this.handleChange} />
                 <button className="btn btn-block btn-outline-success my-2 my-sm-0" type="submit">Find Card By Name</button>  
             </form>
         </div>

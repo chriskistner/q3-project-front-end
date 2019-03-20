@@ -3,7 +3,7 @@ import React from 'react';
 export default function setOptions(props) {
     
     return (
-    <select style={{marginTop: 5, marginBottom: 5}} className="form-control label-select" value={props.set} onChange={props.changeSet}>
+    <select style={{marginTop: 5, marginBottom: 5}} className="form-control label-select" name="set" value={props.set} onChange={props.changeSet}>
         <option value="default">Select Card Set if Known</option>
         <option value="Aether Revolt">Aether Revolt</option>
         <option value="Alara Reborn">Alara Reborn</option>
