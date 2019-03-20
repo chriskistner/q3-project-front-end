@@ -12,7 +12,6 @@ export const SEARCH_CARDS = "SEARCH_CARDS";
                 types: type,
                 colors: color
             })
-            console.log(response)
             dispatch({
                 type: SEARCH_CARDS,
                 payload: response

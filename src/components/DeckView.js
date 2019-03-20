@@ -19,7 +19,8 @@ class CardView extends Component {
 
         this.state = {
             showStats: true,
-            showForm: false
+            showForm: false,
+            searchMessage: ""
         }
     }
 
@@ -56,10 +57,10 @@ class CardView extends Component {
 
     returnToDecks = () => {
         this.props.history.push(`/user_id/${this.props.match.params.user_id}/decks`)
-    }
-
+    };
 
     render() {
+        console.log(this.props.cards)
         return(    
         <div className='container'>
             <div style={{marginBottom: 10, marginTop: 10}} className="row justify-content-between">

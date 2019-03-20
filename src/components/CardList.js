@@ -6,7 +6,7 @@ function cardRow(props) {
     const cards = props.foundCards;
 
     return (
-        <div className="container">
+        <div className="container" style={{display: "flex",flexDirection: "row", flexWrap: "wrap"}}>
         {
             cards.slice(0,20).map(card => <CardData key={card.id} cardData={card} />)
             }
