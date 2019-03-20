@@ -46,7 +46,6 @@ class CardView extends Component {
             showForm: !this.state.createLoc
 
         })
-        console.log(this.state.showStats)
     };
 
     userLogOut = () => {

@@ -9,9 +9,7 @@ class SearchForm extends Component {
         super(props)
 
         this.state = {
-            name: '',
-            set: '',
-            color: '',
+
         }
     };
 
@@ -19,25 +17,14 @@ class SearchForm extends Component {
         this.setState({
           [event.target.name]: event.target.value
         })
-    };
-
-    handleChangeName = (event) => {
-        this.setState({
-          name: event.target.value
-        })
-      };
-
-    handleChangeSet = (event) => {
-        this.setState({
-            set: event.target.value
-        })
+        console.log(this.state)
     };
 
     render() {
         return (
         <div>
             <form className="form my-2 my-lg-0" onSubmit={(event) => { event.preventDefault()
-            this.props.findCards(this.state.name, this.state.set)}}>
+            this.props.findCards(this.state.name, this.state.set, this.state.color, this.state.type)}}>
             <div className="row mb-2">
                 <div className="col">
                 <input className="form-control mr-sm-2" type="search" placeholder="Search Cards by Name" name="name" value={this.state.name} onChange={this.handleChange} aria-label="Search"/>
@@ -47,23 +34,23 @@ class SearchForm extends Component {
                 <div className="col-6">
                     <select className="form-control label-select" name="color" value={this.props.color} onChange={this.handleChange}>
                         <option value="default" selected disabled>Select Card Color if Known</option>
-                        <option value="black">Black</option>
-                        <option value="blue">Blue</option>
-                        <option value="green">Green</option>
-                        <option value="red">Red</option>
-                        <option value="white">White</option>
+                        <option value="Black">Black</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Green">Green</option>
+                        <option value="Red">Red</option>
+                        <option value="White">White</option>
                     </select>
                 </div>
                 <div className="col-6">
                     <select className="form-control label-select" name="type" value={this.props.color} onChange={this.handleChange}>
                         <option value="default" selected disabled>Select Card Type if Known</option>
-                        <option value="artifact">Artifact</option>
-                        <option value="creature">Creature</option>
-                        <option value="enchantment">Enchantment</option>
+                        <option value="Artifact">Artifact</option>
+                        <option value="Creature">Creature</option>
+                        <option value="Enchantment">Enchantment</option>
                         <option value="Instant">Instant</option>
-                        <option value="planeswalker">Planeswalker</option>
-                        <option value="spell">Spell</option>
-                        <option value="sorcery">Sorcery</option>
+                        <option value="Planeswalker">Planeswalker</option>
+                        <option value="Spell">Spell</option>
+                        <option value="Sorcery">Sorcery</option>
                     </select>
                 </div>
             </div>
