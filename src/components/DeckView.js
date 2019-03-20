@@ -9,7 +9,7 @@ import CardList from './CardList'
 import CurveGraph from './CurveGraph'
 import DeckCards from './DeckCards'
 
-import { decrement, increment, getDeckCards } from '../actions/deckCards'
+import { decrement, increment, getDeckCards } from '../actions/deckCards';
 
 const server = process.env.REACT_APP_API_URL
 
@@ -41,7 +41,8 @@ class CardView extends Component {
     }
 
 
-    render = () =>
+    render() {
+        return(    
         <div className='container'>
             <div style={{marginBottom: 10, marginTop: 10}} className="row justify-content-between">
                 <div className="col-6 align-items-center">
@@ -79,11 +80,14 @@ class CardView extends Component {
                 </div>
             </div>
         </div>
+        )
+        }
 }
 
 const mapStateToProps = (state) => (state)
+
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ decrement, increment, getDeckCards, setAuthentication }, dispatch)
+  return bindActionCreators({ decrement, increment, getDeckCards, setAuthentication}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardView)
