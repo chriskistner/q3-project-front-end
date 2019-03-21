@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Popover from 'react-tiny-popover'
+import Popover, {ArrowContainer} from 'react-tiny-popover'
 import mountain from '../icons/MTG_Mountain.png';
 import ocean from '../icons/MTG_Blue.png';
 import plains from '../icons/MTG_Plains.png';
@@ -62,11 +62,28 @@ class CardData extends Component {
                     <Popover
                         isOpen={this.state.isOpen}
                         position={'right'} // preferred position
-                        content={(
-                        <div>
-                            Hi! I'm popover content.
-                        </div>
-                        )}>
+                        padding={10}
+                        disableReposition // prevents automatic readjustment of content position that keeps your popover content within your window's bounds
+                        onClickOutside={() => this.togglePopOver()} // handle click events outside of the popover/target here!
+                        content={({ position, targetRect, popoverRect }) => (
+                            <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+                                position={position}
+                                targetRect={targetRect}
+                                popoverRect={popoverRect}
+                                arrowColor={'black'}
+                                arrowSize={10}
+                            >
+                                <div className="container">
+                                    <div className="row bg-white">
+                                        <div className="col">
+                                            Hi! I'm popover content. Here's my position: {position}.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </ArrowContainer>
+                        )}
+                    >
                     <a href="#" onClick={() => this.togglePopOver()}>
                     <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
                     </a>
