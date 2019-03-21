@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Popover from 'react-tiny-popover'
 import mountain from '../icons/MTG_Mountain.png';
 import ocean from '../icons/MTG_Blue.png';
 import plains from '../icons/MTG_Plains.png';
@@ -48,21 +49,34 @@ class CardData extends Component {
         return displayCosts.map((point, id) => this.generateManaTags(point, id));
     };
 
-    setModal = (isOpen) => {
-        this.setState({ isOpen })
+    togglePopOver = () => {
+        this.setState({ 
+            isOpen: !this.state.isOpen 
+        })
     };
 
     render() {
         const manaCost = this.props.cardData.manaCost || 0;
         return (
-            <div class="card m-2 border border-dark" style={{width: 200}}>
-                <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
-                <div class="card-body">
-                    <h5 class="card-title">{this.props.cardData.name}</h5>
-                    <span>MANA: {this.generateManaCost(manaCost)}</span>
-                    <a href="#" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) } class="btn btn-primary">Add to Deck</a>
+                <div class="card m-2 border border-dark" style={{width: 200}}>
+                    <Popover
+                        isOpen={this.state.isOpen}
+                        position={'right'} // preferred position
+                        content={(
+                        <div>
+                            Hi! I'm popover content.
+                        </div>
+                        )}>
+                    <a href="#" onClick={() => this.togglePopOver()}>
+                    <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{this.props.cardData.name}</h5>
+                        <span>MANA: {this.generateManaCost(manaCost)}</span>
+                        <a href="#" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) } class="btn btn-primary">Add to Deck</a>
+                    </div>
+                    </Popover>
                 </div>
-            </div>
         )
     }
 };
