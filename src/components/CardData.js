@@ -73,13 +73,32 @@ class CardData extends Component {
                                 arrowColor={'black'}
                                 arrowSize={10}
                             >
-                                <div className="container">
-                                    <div className="row bg-white">
+                                <div className="container rounded-right  bg-white border border-dark" style={{maxWidth: 250}}>
+                                    <div className="row bg-secondary text-white border-bottom">
                                         <div className="col">
-                                            Hi! I'm popover content. Here's my position: {position}.
+                                            <b>{this.props.cardData.name}</b>
                                         </div>
                                     </div>
-
+                                    <div className="row border-bottom">
+                                        <div className="col">
+                                            <span>MANA: {this.generateManaCost(manaCost)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="row border-bottom">
+                                        <div className="col">
+                                            <span>POWER RATING: {this.props.cardData.power}</span>
+                                        </div>
+                                    </div>
+                                    <div className="row border-bottom">
+                                        <div className="col">
+                                            <span>TYPE: {this.props.cardData.type}</span>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col">
+                                            <span>SET: {this.props.cardData.setName}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </ArrowContainer>
                         )}
@@ -87,10 +106,9 @@ class CardData extends Component {
                     <a href="#" onClick={() => this.togglePopOver()}>
                     <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
                     </a>
-                    <div class="card-body">
-                        <h5 class="card-title">{this.props.cardData.name}</h5>
-                        <span>MANA: {this.generateManaCost(manaCost)}</span>
-                        <a href="#" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) } class="btn btn-primary">Add to Deck</a>
+                    <div class="card-body mt-1 border-top p-1">
+                        <a href="#" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) } class="btn btn-primary btn-block">Add to Deck</a>
+                        <span><i>Click Card for Stats</i></span>
                     </div>
                     </Popover>
                 </div>
