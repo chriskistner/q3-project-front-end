@@ -44,7 +44,7 @@ class SearchForm extends Component {
                 </div>
                 <div className="col-3">
                     <select className="form-control label-select" name="type" value={this.props.color} onChange={this.handleChange}>
-                        <option value="" selected disabled>Any Type</option>
+                        <option value="" selected>Any Type</option>
                         <option value="Artifact">Artifact</option>
                         <option value="Creature">Creature</option>
                         <option value="Enchantment">Enchantment</option>

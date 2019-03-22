@@ -80,7 +80,7 @@ class CardView extends Component {
                             :
 
                             <label className="btn btn-secondary">
-                                <button style={{minWidth: 131}} onClick={this.toggleSearchForm} className="btn text-white">Deck Statistics</button>
+                                <button style={{minWidth: 140}} onClick={this.toggleSearchForm} className="btn text-white">Deck Statistics</button>
                             </label>
                         }
                         <label className="btn btn-secondary">
