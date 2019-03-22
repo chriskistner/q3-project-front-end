@@ -75,12 +75,12 @@ class CardView extends Component {
                         {
                             this.state.showStats ? 
                             <label className="btn btn-secondary">
-                                <button style={{width: 131}} onClick={this.toggleSearchForm} className="btn text-white">Find Cards</button>
+                                <button style={{minWidth: 140}} onClick={this.toggleSearchForm} className="btn text-white">Find Cards</button>
                             </label>
                             :
 
                             <label className="btn btn-secondary">
-                                <button style={{width: 131}} onClick={this.toggleSearchForm} className="btn text-white">Deck Statistics</button>
+                                <button style={{minWidth: 131}} onClick={this.toggleSearchForm} className="btn text-white">Deck Statistics</button>
                             </label>
                         }
                         <label className="btn btn-secondary">
