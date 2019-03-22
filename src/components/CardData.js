@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Popover, {ArrowContainer} from 'react-tiny-popover'
 import mountain from '../icons/MTG_Mountain.png';
 import ocean from '../icons/MTG_Blue.png';
 import plains from '../icons/MTG_Plains.png';
@@ -48,21 +49,71 @@ class CardData extends Component {
         return displayCosts.map((point, id) => this.generateManaTags(point, id));
     };
 
-    setModal = (isOpen) => {
-        this.setState({ isOpen })
+    togglePopOver = () => {
+        this.setState({ 
+            isOpen: !this.state.isOpen 
+        })
     };
 
     render() {
         const manaCost = this.props.cardData.manaCost || 0;
         return (
-            <div class="card m-2 border border-dark" style={{width: 200}}>
-                <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
-                <div class="card-body">
-                    <h5 class="card-title">{this.props.cardData.name}</h5>
-                    <span>MANA: {this.generateManaCost(manaCost)}</span>
-                    <a href="#" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) } class="btn btn-primary">Add to Deck</a>
+                <div class="card m-2 border border-dark" style={{width: 200}}>
+                    <Popover
+                        isOpen={this.state.isOpen}
+                        position={'right'} // preferred position
+                        padding={10}
+                        disableReposition // prevents automatic readjustment of content position that keeps your popover content within your window's bounds
+                        onClickOutside={() => this.togglePopOver()} // handle click events outside of the popover/target here!
+                        content={({ position, targetRect, popoverRect }) => (
+                            <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+                                position={position}
+                                targetRect={targetRect}
+                                popoverRect={popoverRect}
+                                arrowColor={'black'}
+                                arrowSize={10}
+                            >
+                                <div className="container rounded-right  bg-white border border-dark" style={{maxWidth: 250}}>
+                                    <div className="row bg-secondary text-white border-bottom">
+                                        <div className="col">
+                                            <b>{this.props.cardData.name}</b>
+                                        </div>
+                                    </div>
+                                    <div className="row border-bottom">
+                                        <div className="col">
+                                            <span>MANA: {this.generateManaCost(manaCost)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="row border-bottom">
+                                        <div className="col">
+                                            <span>POWER RATING: {this.props.cardData.power}</span>
+                                        </div>
+                                    </div>
+                                    <div className="row border-bottom">
+                                        <div className="col">
+                                            <span>TYPE: {this.props.cardData.type}</span>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col">
+                                            <span>SET: {this.props.cardData.setName}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ArrowContainer>
+                        )}
+                    >
+                    <a href="#" onClick={( event) => {
+                        event.preventDefault()
+                        this.togglePopOver()}}>
+                    <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
+                    </a>
+                    <div class="card-body mt-1 border-top p-1">
+                        <a href="#" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) } class="btn btn-primary btn-block">Add to Deck</a>
+                        <span><i>Click Card for Stats</i></span>
+                    </div>
+                    </Popover>
                 </div>
-            </div>
         )
     }
 };
