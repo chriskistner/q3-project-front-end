@@ -34,7 +34,7 @@ class SearchForm extends Component {
                 </div>
                 <div className="col-3">
                     <select className="form-control label-select" name="color" value={this.props.color} onChange={this.handleChange}>
-                        <option value="default" selected disabled>Select Color</option>
+                        <option value="" selected>Any Color</option>
                         <option value="Black">Black</option>
                         <option value="Blue">Blue</option>
                         <option value="Green">Green</option>
@@ -44,7 +44,7 @@ class SearchForm extends Component {
                 </div>
                 <div className="col-3">
                     <select className="form-control label-select" name="type" value={this.props.color} onChange={this.handleChange}>
-                        <option value="default" selected disabled>Select Type</option>
+                        <option value="" selected disabled>Any Type</option>
                         <option value="Artifact">Artifact</option>
                         <option value="Creature">Creature</option>
                         <option value="Enchantment">Enchantment</option>
