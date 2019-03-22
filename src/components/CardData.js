@@ -103,7 +103,9 @@ class CardData extends Component {
                             </ArrowContainer>
                         )}
                     >
-                    <a href="#" onClick={() => this.togglePopOver()}>
+                    <a href="#" onClick={( event) => {
+                        event.preventDefault()
+                        this.togglePopOver()}}>
                     <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
                     </a>
                     <div class="card-body mt-1 border-top p-1">
