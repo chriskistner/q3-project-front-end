@@ -48,6 +48,7 @@ class CardView extends Component {
     };
 
     render() {
+        console.log(this.props.deckCards)
         return(    
         <div className='container'>
             <div style={{marginBottom: 10, marginTop: 10}} className="row justify-content-between">
