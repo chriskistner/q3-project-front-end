@@ -73,14 +73,21 @@ class DeckCard extends Component {
 
     render = () => {
         return (
-            <div>
-                <QtyButtons
+            <div className="row justify-content-between">
+                <div className="col-3">
+                    <QtyButtons
                     qty={ this.props.qty }
                     id = { this.props.id }
                     />
-                { this.props.qty }x
-                { ' ' + this.props.name }
-                <span className='card-cost'>{ this.getCost() }</span>
+                </div>
+                
+                <div className="col-auto">
+                    { this.props.qty }x
+                    { ' ' + this.props.name }
+                </div>
+                <div className="col-auto">
+                    <span className='card-cost'>{ this.getCost() }</span>
+                </div>
             </div>
         )
     }
