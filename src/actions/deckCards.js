@@ -1,12 +1,13 @@
-import axios from 'axios'
+import axios from 'axios';
 
-import { convertCost, convertTypes } from '../utilities/utilities'
+import { convertCost, convertTypes } from '../utilities/utilities';
 
-export const DECREMENT = 'DECREMENT'
+export const DECREMENT = 'DECREMENT';
 export const INCREMENT = "INCREMENT";
-export const DECKCARDS = 'DECKCARDS'
-export const ADDDECKCARD = 'ADDDECKCARD'
-export const REMOVECARD = 'REMOVECARD'
+export const DECKCARDS = 'DECKCARDS';
+export const ADDDECKCARD = 'ADDDECKCARD';
+export const REMOVECARD = 'REMOVECARD';
+export const CLEARDECK = 'CLEARDECK';
 
 const server = process.env.REACT_APP_API_URL
 
@@ -157,6 +158,11 @@ export const remove = (userId, deckId, cardId) => {
     } catch (err) {
         console.log(err)
     }
-
     }
-}
+};
+
+export const clearDeck = () => {
+    return (dispatch) => {
+        dispatch({type: CLEARDECK})
+    }
+};

@@ -3,7 +3,8 @@ import {
     DECREMENT,
     DECKCARDS,
     ADDDECKCARD,
-    REMOVECARD
+    REMOVECARD,
+    CLEARDECK
 } from '../actions/deckCards'
 
 const deckCards = (state = [], action) => {
@@ -29,14 +30,14 @@ const deckCards = (state = [], action) => {
             const newState = state.slice(0)
             const index = newState.findIndex(card => card.id === id)
 
-            console.log("newState", newState, "index", index, "id", id)
-
             newState[index].qty = qty
 
             return newState
         }
 
-
+        case CLEARDECK: 
+            state = [];
+            return state;
 
         case DECKCARDS:
             return action.payload
