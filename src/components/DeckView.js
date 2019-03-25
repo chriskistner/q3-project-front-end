@@ -50,7 +50,7 @@ class CardView extends Component {
     render() {
         console.log(this.props.deckCards)
         return(    
-        <div className='container'>
+        <div className='container mb-2'>
             <div style={{marginBottom: 10, marginTop: 10}} className="row justify-content-between">
                 <div className="col-6 align-items-center">
                     <h2>Deck Composition</h2>
@@ -77,9 +77,24 @@ class CardView extends Component {
                         </div>
                     </div>
                 </div>
-            <div className="row" >
-                <div className='col-4'>
-                    <DeckCards />
+            <div className="row border border-bottom " >
+                <div className='col-4 border-right'>
+                        <div className="row bg-dark text-white mb-2 border-bottom justify-content-between align-items-center">
+                            <div className="col-3">
+                                <b>Add/Drop</b>
+                            </div>
+                            <div className= "col-5">
+                                <b>Card/Quanity</b>
+                            </div>
+                            <div className="col-4">
+                                <b>Mana</b>
+                            </div>
+                        </div>
+                    { this.props.deckCards.length === 0 ?
+                        <span>You Have No Cards in Your Deck...</span> 
+                        :
+                        <DeckCards />
+                    }
                 </div>
                 <div className='col-8'>
                     {
