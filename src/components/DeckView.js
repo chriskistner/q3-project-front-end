@@ -77,8 +77,19 @@ class CardView extends Component {
                         </div>
                     </div>
                 </div>
-            <div className="row border" >
+            <div className="row border border-bottom " >
                 <div className='col-4 border-right'>
+                        <div className="row bg-dark text-white mb-2 border-bottom justify-content-between align-items-center">
+                            <div className="col-3">
+                                <b>Add/Drop</b>
+                            </div>
+                            <div className= "col-5">
+                                <b>Card/Quanity</b>
+                            </div>
+                            <div className="col-4">
+                                <b>Mana</b>
+                            </div>
+                        </div>
                     { this.props.deckCards.length === 0 ?
                         <span>You Have No Cards in Your Deck...</span> 
                         :
