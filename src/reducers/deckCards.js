@@ -4,8 +4,9 @@ import {
     DECKCARDS,
     ADDDECKCARD,
     REMOVECARD,
-    CLEARDECK
-} from '../actions/deckCards'
+    CLEARDECK,
+    FETCHCARD
+} from '../actions/deckCards';
 
 const deckCards = (state = [], action) => {
     switch (action.type) {
@@ -38,6 +39,10 @@ const deckCards = (state = [], action) => {
         case CLEARDECK: 
             state = [];
             return state;
+
+        case FETCHCARD:
+            console.log(action.payload);
+            return {...state, currentCard: action.payload}
 
         case DECKCARDS:
             return action.payload
