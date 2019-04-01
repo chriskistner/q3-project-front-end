@@ -170,7 +170,7 @@ export const clearDeck = () => {
 };
 
 export function fetchCard(id) {
-    mtg.card.find('386616')
+    mtg.card.find('130489')
     .then(result => {
         console.log(result.card);
     })
