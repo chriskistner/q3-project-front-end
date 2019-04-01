@@ -170,11 +170,10 @@ export const clearDeck = () => {
 };
 
 export function fetchCard(id) {
-    console.log(id)
-    mtg.card.where({id: id})
-        .then(result => {
-        console.log(result)
-    });
+    mtg.card.find('386616')
+    .then(result => {
+        console.log(result.card);
+    })
     // return async (dispatch) => {
     //     try {
     //         const response = await mtg.card.find(id)
