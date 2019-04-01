@@ -6,7 +6,7 @@ export const SEARCH_CARDS = "SEARCH_CARDS";
         try {
             const response = await mtg.card.where(
                 {name, 
-                gameFormat:'standard', 
+                legality: 'Legal',
                 setName: set,
                 types: type,
                 colors: color
