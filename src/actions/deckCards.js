@@ -1,4 +1,5 @@
 import axios from 'axios';
+import mtg from 'mtgsdk';
 
 import { convertCost, convertTypes } from '../utilities/utilities';
 
@@ -8,6 +9,7 @@ export const DECKCARDS = 'DECKCARDS';
 export const ADDDECKCARD = 'ADDDECKCARD';
 export const REMOVECARD = 'REMOVECARD';
 export const CLEARDECK = 'CLEARDECK';
+export const FETCHCARD = "FETCHCARD";
 
 const server = process.env.REACT_APP_API_URL
 
@@ -95,7 +97,7 @@ export const addCard = (userId, deckId, cardData) => {
         const body = convertCost(cardData.manaCost)
         body.types = convertTypes(cardData.types, cardData.subtypes)
         body.name = cardData.name
-        body.api_id = cardData.id
+        body.api_id= cardData.id
         try {
             const token = localStorage.getItem('token')
             await axios(
@@ -165,4 +167,23 @@ export const clearDeck = () => {
     return (dispatch) => {
         dispatch({type: CLEARDECK})
     }
+};
+
+export function fetchCard(id) {
+    console.log(id)
+    mtg.card.where({id: id})
+        .then(result => {
+        console.log(result)
+    });
+    // return async (dispatch) => {
+    //     try {
+    //         const response = await mtg.card.find(id)
+    //         dispatch({
+    //             type: FETCHCARD,
+    //             payload: response
+    //         })
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
 };
