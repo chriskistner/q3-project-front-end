@@ -97,7 +97,7 @@ export const addCard = (userId, deckId, cardData) => {
         const body = convertCost(cardData.manaCost)
         body.types = convertTypes(cardData.types, cardData.subtypes)
         body.name = cardData.name
-        body.api_id= cardData.id
+        body.api_id= cardData.multiverseid
         try {
             const token = localStorage.getItem('token')
             await axios(
