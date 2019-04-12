@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {setAuthentication} from '../actions/authentication';
 
-import SearchForm from './SearchForm'
-import CardList from './CardList'
-import CurveGraph from './CurveGraph'
-import DeckCards from './DeckCards'
+import SearchForm from './SearchForm';
+import CardList from './CardList';
+import CurveGraph from './CurveGraph';
+import DeckCards from './DeckCards';
 
 import { decrement, increment, getDeckCards, clearDeck } from '../actions/deckCards';
 
@@ -22,7 +22,7 @@ class CardView extends Component {
     };
 
     componentDidMount = () => {
-        this.props.getDeckCards(this.props.match.params.user_id, this.props.match.params.deck_id)
+        this.props.getDeckCards(this.props.match.params.user_id, this.props.match.params.deck_id);
     };
 
     componentWillUnmount = () => {
@@ -47,8 +47,8 @@ class CardView extends Component {
         this.props.history.push(`/user_id/${this.props.match.params.user_id}/decks`)
     };
 
+
     render() {
-        console.log(this.props.cards);
         return(    
         <div className='container mb-2'>
             <div style={{marginBottom: 10, marginTop: 10}} className="row justify-content-between">
