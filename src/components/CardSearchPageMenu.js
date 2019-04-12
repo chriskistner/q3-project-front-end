@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function searchMenu (props) {
-    const pageNum = props.foundCards.length;
+    const pageNum = props.foundCards;
 
     return (
         <div className="container">
