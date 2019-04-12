@@ -108,9 +108,9 @@ class CardData extends Component {
                         this.togglePopOver()}}>
                     <img src={this.props.cardData.imageUrl ? this.props.cardData.imageUrl : cardDefault} alt={this.props.cardData.name} class="card-img-top"/>
                     </a>
-                    <div class="card-body mt-1 border-top p-1">
+                    <b className="text-center">{this.props.cardData.name}</b>
+                    <div class="card-body border-top" style = {{padding: 0}} >
                         <a href="#" onClick={ e => this.props.addCard(this.props.auth.userId, this.props.match.params.deck_id, this.props.cardData) } class="btn btn-primary btn-block">Add to Deck</a>
-                        <span><i>Click Card for Stats</i></span>
                     </div>
                     </Popover>
                 </div>
