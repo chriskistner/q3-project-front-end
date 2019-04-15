@@ -49,7 +49,6 @@ class CardView extends Component {
 
 
     render() {
-        console.log(this.props.cards)
         return(    
         <div className='container mb-2'>
             <div style={{marginBottom: 10, marginTop: 10}} className="row justify-content-between">
@@ -105,7 +104,7 @@ class CardView extends Component {
                         <div>                     
                         <h2 className="navbar-brand"> Search Magic Cards</h2>
                         <SearchForm />
-                        <CardList foundCards = {this.props.cards.searchCards} />
+                        <CardList />
                         </div>
                     }
                 </div>
