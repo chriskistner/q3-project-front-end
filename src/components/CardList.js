@@ -8,28 +8,24 @@ class cardRow extends Component{
     constructor(props) {
         super(props)
 
-        this.state = {
-            allCards: this.props.cards,
-            // resultL: this.props.cards.foundCards.length
-        }
+        this.state = { }
     }
 
     render () {
-        console.log(this.props.cards)
         return (
             <div className="container border">
-            {this.props.cards.length !== 0 ? <div className = "row align-items-center mt-1">
+            {this.props.foundCards.length !== 0 ? <div className = "row align-items-center mt-1">
                 <div className = "col justify-content-center">
-                    <p className="text-center"><strong>{this.props.cards.length} entries found:</strong> Click Card Image for More Stats</p>
+                    <p className="text-center"><strong>{this.props.foundCards.length} entries found:</strong> Click Card Image for More Stats</p>
                 </div>
             </div> : null}
             <div className="row align-items-center">
                 <div className="col" style={{display: "flex",flexDirection: "row", flexWrap: "wrap"}}>
                 {
-                this.props.cards.slice(0,20).map(card => <CardData key={card.id} cardData={card} />)
+                this.props.foundCards.slice(0,20).map(card => <CardData key={card.id} cardData={card} />)
                 }
                 </div>
-                {this.props.cards.length !== 0 ? <SearchMenu foundCards = {this.props.cards.length} /> : null} 
+                {this.props.foundCards.length !== 0 ? <SearchMenu foundCards = {this.props.foundCards.length} /> : null} 
             </div>
             </div>
         )
