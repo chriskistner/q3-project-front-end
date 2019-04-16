@@ -1,15 +1,39 @@
 import mtg from 'mtgsdk';
 export const SEARCH_CARDS = "SEARCH_CARDS";
 export const GENERATE_PAGE= "GENERATE_PAGE";
+export const GENERATE_PAGE_TOTAL = "GENERATE_PAGE_TOTAL";
+export const PAGE_PLUS = "PAGE_PLUS";
 
 
-export const generatePage =(list, page) => {
-    const newPage = list.slice(0 * page, page * 9);
+export const generatePageTotal = (list) => {
+    const totalPages = Math.ceil(list.length / 9);
+
+    return (dispatch) => {
+        dispatch({
+            type: GENERATE_PAGE_TOTAL,
+            payload: totalPages
+        })
+    }
+};
+
+export const generatePage =(list, start) => {
+    const newPage = list.slice(start, start + 9);
 
     return (dispatch) => {
         dispatch({
             type: GENERATE_PAGE,
             payload: newPage
+        })
+    }
+};
+
+export const pageUp = (page, start) => {
+    const newPage = {newPage: page+=1, cardStart: start+9 };
+    return (dispatch) => {
+        dispatch({
+            type: PAGE_PLUS,
+            payload: newPage
+
         })
     }
 }
@@ -28,8 +52,8 @@ export const generatePage =(list, page) => {
                 type: SEARCH_CARDS,
                 payload: response
             });
-
-            dispatch(generatePage(response, 1));
+            dispatch(generatePageTotal(response));
+            dispatch(generatePage(response, 0));
 
         } catch (err) {
             console.error(err)
