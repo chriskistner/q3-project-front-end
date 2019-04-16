@@ -28,9 +28,7 @@ export const generatePage =(list, start) => {
 };
 
 export const pageUp = (page, start) => {
-
-    const newPage = {newPage: page++, pageStart: start+9 }
-
+    const newPage = {newPage: page+=1, cardStart: start+9 };
     return (dispatch) => {
         dispatch({
             type: PAGE_PLUS,

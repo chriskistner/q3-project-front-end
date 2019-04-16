@@ -5,20 +5,24 @@ const initialState = {
     pageCards: [],
     totalPages: 1,
     currentPage: 1,
-    pageStart: 0
+    cardStart: 0
 };
 
 export default function cards (state = initialState, action) {
     switch(action.type) {
         case SEARCH_CARDS: 
-            return {...state, searchCards: action.payload}
+            return {...state, searchCards: action.payload};
+
         case GENERATE_PAGE_TOTAL:
-            return {...state, totalPages: action.payload}
-            case PAGE_PLUS:
-                return {...state, currentPage: action.payload.newPage, pageStart: action.payload.pageStart}
+            return {...state, totalPages: action.payload};
+
+        case PAGE_PLUS:
+            return {...state, currentPage: action.payload.newPage, cardStart: action.payload.cardStart};
+
         case GENERATE_PAGE:
-            return {...state, pageCards: action.payload}
+            return {...state, pageCards: action.payload};
+
         default:
-            return state
+            return state;
     }
-}
+};

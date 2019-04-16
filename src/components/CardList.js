@@ -14,6 +14,7 @@ class cardRow extends Component{
     }
 
     render () {
+        console.log(this.props)
         return (
             <div className="container border">
             {this.props.cards.length !== 0 ? <div className = "row align-items-center mt-1">
@@ -27,7 +28,11 @@ class cardRow extends Component{
                 this.props.cards.slice(0,20).map(card => <CardData key={card.id} cardData={card} />)
                 }
                 </div>
-                {this.props.cards.length !== 0 ? <SearchMenu  foundCards = {this.props.cards.length} /> : null} 
+                {this.props.cards.length !== 0 ? <SearchMenu 
+                    cardStart = {this.props.cardStart} 
+                    pageUp = {this.props.pageUp}  
+                    activePage = {this.props.currentPage}/> 
+                    : null} 
             </div>
             </div>
         )
@@ -36,7 +41,11 @@ class cardRow extends Component{
 
 const mapStateToProps = (state) => {
     return {
-      cards: state.cards.searchCards
+      cards: state.cards.searchCards,
+      pageCards: state.cards.pageCards,
+      totalPages: state.cards.totalPages,
+      currentPage: state.cards.currentPage,
+      cardStart: state.cards.cardStart
     }
   };
 
