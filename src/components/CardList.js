@@ -25,7 +25,7 @@ class cardRow extends Component{
                 </div>
             </div> : null}
             <div className="row align-items-center">
-                <div className="col" style={{display: "flex",flexDirection: "row", flexWrap: "wrap"}}>
+                <div className="col px-1" style={{display: "flex",flexDirection: "row", flexWrap: "wrap"}}>
                 {
                 this.props.pageCards.map(card => <CardData key={card.id} cardData={card} />)
                 }

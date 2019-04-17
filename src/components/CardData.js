@@ -58,7 +58,7 @@ class CardData extends Component {
     render() {
         const manaCost = this.props.cardData.manaCost || 0;
         return (
-                <div class="card m-2 border border-dark" style={{width: 200}}>
+                <div class="card m-2 border border-dark" style={{width: 215}}>
                     <Popover
                         isOpen={this.state.isOpen}
                         position={'right'} // preferred position
