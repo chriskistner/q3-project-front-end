@@ -3,6 +3,7 @@ export const SEARCH_CARDS = "SEARCH_CARDS";
 export const GENERATE_PAGE= "GENERATE_PAGE";
 export const GENERATE_PAGE_TOTAL = "GENERATE_PAGE_TOTAL";
 export const PAGE_PLUS = "PAGE_PLUS";
+export const PAGE_MINUS = "PAGE_MINUS";
 
 
 export const generatePageTotal = (list) => {
@@ -27,7 +28,7 @@ export const generatePage =(list, start) => {
     }
 };
 
-export const pageUp = (page, start) => {
+export const pageUp = (page, start, list) => {
     const newPage = {newPage: page+=1, cardStart: start+9 };
     return (dispatch) => {
         dispatch({
@@ -35,8 +36,21 @@ export const pageUp = (page, start) => {
             payload: newPage
 
         })
+        dispatch(generatePage(list, newPage.cardStart))
     }
-}
+};
+
+export const pageDown = (page, start, list) => {
+    const newPage = {newPage: page-=1, cardStart: start-9 };
+    return (dispatch) => {
+        dispatch({
+            type: PAGE_MINUS,
+            payload: newPage
+
+        })
+        dispatch(generatePage(list, newPage.cardStart))
+    }
+};
 
   export function findCards(name, set = '', color= '', type= '') {
     return async (dispatch) => {
