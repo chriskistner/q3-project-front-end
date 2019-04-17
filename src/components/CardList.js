@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CardData from './CardData.js';
 import { connect } from 'react-redux';
-import { pageUp } from '../actions/cards';
+import { pageUp, pageDown } from '../actions/cards';
 import { bindActionCreators } from 'redux';
 
 import SearchMenu from './CardSearchPageMenu';
@@ -25,12 +25,14 @@ class cardRow extends Component{
             <div className="row align-items-center">
                 <div className="col" style={{display: "flex",flexDirection: "row", flexWrap: "wrap"}}>
                 {
-                this.props.cards.slice(0,20).map(card => <CardData key={card.id} cardData={card} />)
+                this.props.pageCards.map(card => <CardData key={card.id} cardData={card} />)
                 }
                 </div>
                 {this.props.cards.length !== 0 ? <SearchMenu 
+                    searchResults = {this.props.cards}
                     cardStart = {this.props.cardStart} 
-                    pageUp = {this.props.pageUp}  
+                    pageUp = {this.props.pageUp}
+                    pageDown = {this.props.pageDown}  
                     activePage = {this.props.currentPage}/> 
                     : null} 
             </div>
@@ -50,7 +52,7 @@ const mapStateToProps = (state) => {
   };
 
   const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({pageUp}, dispatch)
+    return bindActionCreators({pageUp, pageDown}, dispatch)
   }
 
   export default connect(mapStateToProps, mapDispatchToProps)(cardRow);
