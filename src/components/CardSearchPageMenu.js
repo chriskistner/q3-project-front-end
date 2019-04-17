@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 function searchMenu (props) {
     return (
         <div className="container">
-            <div className="row align-items-center justify-content-center">
+            <div className="row bg-dark text-white align-items-center justify-content-center">
                 {props.activePage > 1 ? <div classname="col-4">
-                    <button type="button" onClick = {() => {props.pageDown(props.activePage, props.cardStart, props.searchResults)}} class="btn btn-light">Last</button>
+                    <a href="#" class="text-white" onClick = {() => {props.pageDown(props.activePage, props.cardStart, props.searchResults)}}><strong>BACK</strong></a>
                 </div> : null}
-                <div classname="col-4">
-                    <span>..{props.activePage}..</span>
+                <div classname="col-4 px-3">
+                    <span>...Pg.{props.activePage} of {props.pageTotal}...</span>
                 </div>
                 {props.searchResults.length >= props.cardStart + 9 ? <div classname="col-4">
-                    <button type="button" onClick = {() => {props.pageUp(props.activePage, props.cardStart, props.searchResults)}} class="btn btn-light">Next</button>
+                    <a href="#" class="text-white" onClick = {() => {props.pageUp(props.activePage, props.cardStart, props.searchResults)}}><strong>NEXT</strong></a>
                 </div> : null}
             </div>
 
