@@ -4,6 +4,7 @@ export const GENERATE_PAGE= "GENERATE_PAGE";
 export const GENERATE_PAGE_TOTAL = "GENERATE_PAGE_TOTAL";
 export const PAGE_PLUS = "PAGE_PLUS";
 export const PAGE_MINUS = "PAGE_MINUS";
+export const PAGE_RESET = "PAGE_RESET";
 
 
 export const generatePageTotal = (list) => {
@@ -51,6 +52,14 @@ export const pageDown = (page, start, list) => {
         dispatch(generatePage(list, newPage.cardStart))
     }
 };
+
+export const pageReset = () => {
+    return (dispatch) => {
+        dispatch({
+            type: PAGE_RESET
+        })
+    }
+}
 
   export function findCards(name, set = '', color= '', type= '') {
     return async (dispatch) => {

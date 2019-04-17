@@ -14,7 +14,6 @@ class cardRow extends Component{
     }
 
     render () {
-        console.log(this.props)
         return (
             <div className="container border">
             {this.props.cards.length !== 0 ? <div className = "row bg-dark text-white align-items-center">
