@@ -17,9 +17,12 @@ class cardRow extends Component{
         console.log(this.props)
         return (
             <div className="container border">
-            {this.props.cards.length !== 0 ? <div className = "row align-items-center mt-1">
-                <div className = "col justify-content-center">
-                    <p className="text-center"><strong>{this.props.cards.length} entries found:</strong> Click Card Image for More Stats</p>
+            {this.props.cards.length !== 0 ? <div className = "row bg-dark text-white align-items-center">
+                <div className = "col-8">
+                    <p className="my-1"><strong>{this.props.cards.length} Cards found:</strong> Click Card Image for More Stats</p>
+                </div>
+                <div className="col-4">
+                    <p className="text-right my-1">Pg. {this.props.currentPage} of {this.props.totalPages} </p>
                 </div>
             </div> : null}
             <div className="row align-items-center">
@@ -33,7 +36,9 @@ class cardRow extends Component{
                     cardStart = {this.props.cardStart} 
                     pageUp = {this.props.pageUp}
                     pageDown = {this.props.pageDown}  
-                    activePage = {this.props.currentPage}/> 
+                    activePage = {this.props.currentPage}
+                    pageTotal = {this.props.totalPages}
+                    /> 
                     : null} 
             </div>
             </div>
