@@ -6,7 +6,6 @@ export const PAGE_PLUS = "PAGE_PLUS";
 export const PAGE_MINUS = "PAGE_MINUS";
 export const PAGE_RESET = "PAGE_RESET";
 
-
 export const generatePageTotal = (list) => {
     const totalPages = Math.ceil(list.length / 9);
 
