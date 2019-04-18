@@ -8,51 +8,58 @@ import {
     FETCHCARD
 } from '../actions/deckCards';
 
-const deckCards = (state = [], action) => {
+const initialState = {
+    deck: [],
+    currentCard: {}
+};
+
+const deckCards = (state = initialState, action) => {
     switch (action.type) {
         case DECREMENT:
         {
-            const id = action.payload.card_id
-            const qty = action.payload.qty
+            const id = action.payload.card_id;
+            const qty = action.payload.qty;
 
-            const newState = state.slice(0)
-            const index = newState.findIndex(card => card.id === id)
+            const newState = state.deck.slice(0);
+            const index = newState.findIndex(card => card.id === id);
 
-            newState[index].qty = qty
+            newState[index].qty = qty;
 
-            return newState
+            return {...state, deck: newState};
         }
 
         case INCREMENT:
         {
-            const id = action.payload.card_id
-            const qty = action.payload.qty
+            const id = action.payload.card_id;
+            const qty = action.payload.qty;
 
-            const newState = state.slice(0)
-            const index = newState.findIndex(card => card.id === id)
+            const newState = state.deck.slice(0);
+            const index = newState.findIndex(card => card.id === id);
 
-            newState[index].qty = qty
+            newState[index].qty = qty;
 
-            return newState
+            return {...state, deck: newState};
+
         }
 
         case CLEARDECK: 
-            state = [];
-            return state;
+            return {...state, deck: [], currentCard: {} };
 
         case FETCHCARD:
-            console.log(action.payload);
-            return {...state, currentCard: action.payload}
+            const viewCard = action.payload;
+            return {...state, currentCard: viewCard};
 
         case DECKCARDS:
-            return action.payload
+            const deckCards = action.payload;
+            return {...state, deck: deckCards};
 
         case ADDDECKCARD:
-            return action.payload
+            const updatedDeck = action.payload;
+            return {...state, deck: updatedDeck};
 
         case REMOVECARD:
-            return [ ...state ].filter(card => card.id !== action.payload)
-
+            const cardId = action.payload;
+            return {...state, deck: state.deck.filter(card => card.id !== cardId)}
         default:
             return state
     }

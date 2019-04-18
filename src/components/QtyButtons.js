@@ -9,7 +9,7 @@ const QtyButtons = (props) => {
     return(
         <span className='qtyButtons'>
             <button onClick = { () => {
-                    if ( props.qty > 1 )  { // pick a a function
+                    if ( props.qty > 1 )  { // pick a function
                         props.decrement(
                             props.match.params.user_id,
                             props.match.params.deck_id,
@@ -29,7 +29,6 @@ const QtyButtons = (props) => {
         </span>
     )
 }
-// const mapStateToProps = ({ cards }) => ({ cards })
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators({ decrement, increment, remove }, dispatch)
 

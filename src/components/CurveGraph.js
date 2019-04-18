@@ -1,10 +1,9 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { BarChart, XAxis, YAxis, Legend, Bar, CartesianGrid, Tooltip } from 'recharts'
-// import { cards } from '../utilities/utilities'
+import React from 'react';
+import { connect } from 'react-redux';
+import { BarChart, XAxis, YAxis, Legend, Bar, CartesianGrid, Tooltip } from 'recharts';
 
 const convertedManaCosts = (deckCards) => {
-    return deckCards.map(card => {
+    return deckCards.deck.map(card => {
         let convertedManaCost = 0
         for (let property in card) {
             if (property === 'red' ||

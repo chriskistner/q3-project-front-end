@@ -172,23 +172,13 @@ export const clearDeck = () => {
 export const fetchCard = (id) => {
     return async (dispatch) => {
         try {
-            const response= await mtg.card.where({multiverseid: id})
-            console.log(response.card)
+            const response= await mtg.card.find(id)
             dispatch({
                 type: FETCHCARD,
-                payload: response.card
+                payload: response
             })
         }catch(err) {
             console.log(err)
         }
     };
-    // mtg.card.find(id)
-    // .then(response => {
-    //     return (dispatch) => {
-    //         dispatch({
-    //             type: FETCHCARD,
-    //             payload: response.card
-    //         })
-    //     }
-    // });
 };
