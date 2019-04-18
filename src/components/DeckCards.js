@@ -9,7 +9,7 @@ const DeckCards = (props) => {
     return     (
         <div>
             {
-                props.deckCards.map(card => <DeckCard key= { card.id } { ...card } />)
+                props.deckCards.deck.map(card => <DeckCard key= { card.id } { ...card } />)
             }
         </div>
     )
