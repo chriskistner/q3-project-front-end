@@ -1,29 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { pageUp, pageDown } from '../actions/cards';
 
-function searchMenu (props) {
-    return (
-        <div className="container">
-            <div className="row bg-dark text-white align-items-center justify-content-center">
-                {props.activePage > 1 ? <div classname="col-3">
-                    <a href="#" class="text-white" onClick = {() => {props.pageDown(props.activePage, props.cardStart, props.searchResults)}}><strong>BACK</strong></a>
-                </div> : null}
-                <div classname="col-6">
-                    <span className="px-3">Pg.{props.activePage} of {props.pageTotal}</span>
+class SearchMenu extends Component {
+    constructor(props) {
+        super(props)
+        this.state={}
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <div className="row bg-dark text-white align-items-center justify-content-center">
+                    {this.props.currentPage > 1 ? <div classname="col-3">
+                        <a href="#" class="text-white" onClick = {() => {this.props.pageDown(this.props.currentPage, this.props.cardStart, this.props.cards)}}><strong>BACK</strong></a>
+                    </div> : null}
+                    <div classname="col-6">
+                        <span className="px-3">Pg.{this.props.currentPage} of {this.props.totalPages}</span>
+                    </div>
+                    {this.props.cards.length >= this.props.cardStart + 9 ? <div classname="col-473">
+                        <a href="#" class="text-white" onClick = {() => {this.props.pageUp(this.props.currentPage, this.props.cardStart, this.props.cards)}}><strong>NEXT</strong></a>
+                    </div> : null}
                 </div>
-                {props.searchResults.length >= props.cardStart + 9 ? <div classname="col-473">
-                    <a href="#" class="text-white" onClick = {() => {props.pageUp(props.activePage, props.cardStart, props.searchResults)}}><strong>NEXT</strong></a>
-                </div> : null}
+    
             </div>
-
-        </div>
-    )
+        )
+    }
 };
 
 const mapStateToProps = (state) => {
     return {
-      cards: state.cards
+      cards: state.cards.searchCards,
+      pageCards: state.cards.pageCards,
+      totalPages: state.cards.totalPages,
+      currentPage: state.cards.currentPage,
+      cardStart: state.cards.cardStart
     }
   };
 
-  export default connect(mapStateToProps, null)(searchMenu);
+  const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({pageUp, pageDown}, dispatch)
+  }
+
+  export default connect(mapStateToProps, mapDispatchToProps)(SearchMenu);

@@ -7,8 +7,9 @@ import SearchForm from './SearchForm';
 import CardList from './CardList';
 import CurveGraph from './CurveGraph';
 import DeckCards from './DeckCards';
+import CardModal from './CardModal';
 
-import { decrement, increment, getDeckCards, clearDeck } from '../actions/deckCards';
+import { decrement, increment, getDeckCards, clearDeck,} from '../actions/deckCards';
 
 class CardView extends Component {
     constructor(props) {
@@ -36,6 +37,12 @@ class CardView extends Component {
 
         })
     };
+
+    toggleModal = () => {
+        this.setState({
+            showModal: !this.state.showModal,
+        })
+    }
 
     userLogOut = () => {
         localStorage.removeItem('token')
@@ -106,6 +113,7 @@ class CardView extends Component {
                         <h2 className="navbar-brand"> Search Magic Cards</h2>
                         <SearchForm />
                         <CardList />
+                        <CardModal />
                         </div>
                     }
                 </div>

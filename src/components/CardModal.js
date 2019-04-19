@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import './CardData.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { showModal } from '../actions/deckCards';
 import Modal from 'react-modal';
 
-export default class CardModal extends Component {
+class CardModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false
         }
     }
-
-    closeModal = () => {
-        this.setState({
-            isOpen: false
-        });
-      }
 
     render() {
         const customStyles = {
@@ -27,11 +22,17 @@ export default class CardModal extends Component {
               transform             : 'translate(-50%, -50%)'
             }
           };
-
+        console.log('Rendering')
+        
         return (
-            <Modal>
-            <h2>{card}</h2>
-            <button onClick={this.closeModal}>close</button>
+            <Modal
+            isOpen={this.props.display}
+            onRequestClose={()=> this.props.showModal()}
+            style={customStyles}
+            contentLabel="Card Details"
+            >
+            <h2>{this.props.name}</h2>
+            <button>close</button>
             <div>I am a modal</div>
             <form>
               <input />
@@ -43,4 +44,17 @@ export default class CardModal extends Component {
             </Modal>
         )
     }
-}
+};
+
+const mapStateToProps = (state) => {
+  return {
+    display: state.deckCards.modal,
+    name: state.deckCards.currentCard.name,
+  }
+};
+
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators({showModal}, dispatch)
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardModal)

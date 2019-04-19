@@ -10,6 +10,7 @@ export const ADDDECKCARD = 'ADDDECKCARD';
 export const REMOVECARD = 'REMOVECARD';
 export const CLEARDECK = 'CLEARDECK';
 export const FETCHCARD = "FETCHCARD";
+export const SHOWMODAL = "SHOWMODAL";
 
 const server = process.env.REACT_APP_API_URL
 
@@ -166,6 +167,12 @@ export const remove = (userId, deckId, cardId) => {
 export const clearDeck = () => {
     return (dispatch) => {
         dispatch({type: CLEARDECK})
+    }
+};
+
+export const showModal = () => {
+    return (dispatch) => {
+        dispatch({type: SHOWMODAL})
     }
 };
 
