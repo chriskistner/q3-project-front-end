@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import QtyButtons from './QtyButtons';
-import {fetchCard} from '../actions/deckCards';
+import {fetchCard, showModal} from '../actions/deckCards';
 import mountain from '../icons/MTG_Mountain.png';
 import ocean from '../icons/MTG_Blue.png';
 import plains from '../icons/MTG_Plains.png';
@@ -13,7 +13,6 @@ class DeckCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isOpen: false
         }
     }
 
@@ -69,8 +68,6 @@ class DeckCard extends Component {
 
     }
 
-
-
     render = () => {
         return (
             <div className="row py-1 border-bottom justify-content-between align-items-center">
@@ -82,8 +79,11 @@ class DeckCard extends Component {
                 </div>
                 <div className="col-5">
                 { this.props.qty }x <a href="#" onClick={(e) =>  {
-                    // e.preventDefault()
-                    this.props.fetchCard(this.props.api_id)}}> {this.props.name}</a>
+                    e.preventDefault()
+                    this.props.fetchCard(this.props.api_id)
+                    this.props.showModal()
+                }}> {this.props.name}
+                    </a>
                 </div>
                 <div className="col-4">
                     <span className='card-cost'>{ this.getCost() }</span>
@@ -94,6 +94,6 @@ class DeckCard extends Component {
 }
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators({fetchCard}, dispatch)
+    bindActionCreators({fetchCard, showModal}, dispatch)
 
 export default connect(null, mapDispatchToProps)(DeckCard)

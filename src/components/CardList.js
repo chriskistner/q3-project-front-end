@@ -30,14 +30,7 @@ class cardRow extends Component{
                 this.props.pageCards.map(card => <CardData key={card.id} cardData={card} />)
                 }
                 </div>
-                {this.props.cards.length !== 0 ? <SearchMenu 
-                    searchResults = {this.props.cards}
-                    cardStart = {this.props.cardStart} 
-                    pageUp = {this.props.pageUp}
-                    pageDown = {this.props.pageDown}  
-                    activePage = {this.props.currentPage}
-                    pageTotal = {this.props.totalPages}
-                    /> 
+                {this.props.cards.length !== 0 ? <SearchMenu /> 
                     : null} 
             </div>
             </div>
@@ -51,7 +44,6 @@ const mapStateToProps = (state) => {
       pageCards: state.cards.pageCards,
       totalPages: state.cards.totalPages,
       currentPage: state.cards.currentPage,
-      cardStart: state.cards.cardStart
     }
   };
 

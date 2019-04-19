@@ -5,12 +5,14 @@ import {
     ADDDECKCARD,
     REMOVECARD,
     CLEARDECK,
-    FETCHCARD
+    FETCHCARD,
+    SHOWMODAL
 } from '../actions/deckCards';
 
 const initialState = {
     deck: [],
-    currentCard: {}
+    currentCard: {},
+    modal: false
 };
 
 const deckCards = (state = initialState, action) => {
@@ -60,6 +62,10 @@ const deckCards = (state = initialState, action) => {
         case REMOVECARD:
             const cardId = action.payload;
             return {...state, deck: state.deck.filter(card => card.id !== cardId)}
+
+        case SHOWMODAL:
+            return {...state, modal: !state.modal}
+
         default:
             return state
     }
